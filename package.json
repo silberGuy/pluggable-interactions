@@ -5,6 +5,9 @@
   "repository": "https://github.com/silberGuy/pluggable-interactions",
   "author": "silberGuy",
   "license": "MIT",
+  "scripts": {
+    "prepublish": "tsc"
+  },
   "devDependencies": {
     "typescript": "^4.2.4"
   }
