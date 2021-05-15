@@ -1,6 +1,6 @@
 {
   "name": "pluggable-interactions",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "src/index.ts",
   "repository": "https://github.com/silberGuy/pluggable-interactions",
   "author": "silberGuy",
@@ -10,5 +10,13 @@
   },
   "devDependencies": {
     "typescript": "^4.2.4"
-  }
+  },
+  "keywords": [
+    "events",
+    "listeners",
+    "pluggable",
+    "modes",
+    "attach",
+    "dom"
+  ]
 }
