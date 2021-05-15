@@ -42,7 +42,7 @@ export class Interaction {
         }
 
         function addInteraction(interaction: Interaction) {
-            cleanupFuncs.push(interaction.apply(target));
+            addCleanup(interaction.apply(target));
         }
 
         function addListener(target: EventTarget, eventType: string, handler: EventListener, opts?: ListenerOptions) {
@@ -65,6 +65,7 @@ export class Interaction {
         const addTargetListener = function(eventType: string, handler: EventListener, opts?: ListenerOptions) {
             return addListener(target, eventType, handler, opts);
         }
+
         const addDocumentListener = function(eventType: string, handler: EventListener, opts?: ListenerOptions) {
             return addListener(document, eventType, handler, opts);
         }
@@ -75,8 +76,9 @@ export class Interaction {
                 clearInterval(interval);
             });
         }
+
         this.applyFunc({
-            target: target,
+            target,
             addCleanup,
             addInteraction,
             addListener,
