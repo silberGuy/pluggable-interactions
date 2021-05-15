@@ -71,7 +71,6 @@ btn.addEventListener('click', () => {
 
 `Interactions` supports varied pluggable actions:
 ```js
-
 new Interaction(
     ({
         target, 
@@ -92,56 +91,56 @@ new Interaction(
 
 Drag Item Interaction
 ```js
-    const DragInteraction = new pluggable.Interaction(
-        ({
-            addTargetListener, addDocumentListener, setTargetStyle,
-        }) => {
-            setTargetStyle('cursor', 'pointer');
+const DragInteraction = new pluggable.Interaction(
+    ({
+        target, addTargetListener, addDocumentListener, setTargetStyle,
+    }) => {
+        setTargetStyle('cursor', 'pointer');
 
-            let isMouseDown = false;
-            addTargetListener('mousedown', downEvent => {
-                isMouseDown = true;
-            });
+        let isMouseDown = false;
+        addTargetListener('mousedown', downEvent => {
+            isMouseDown = true;
+        });
 
-            addTargetListener('mousemove', moveEvent => {
-                if (!isMouseDown) return;
-                moveEvent.preventDefault();
+        addDocumentListener('mousemove', moveEvent => {
+            if (!isMouseDown) return;
+            moveEvent.preventDefault();
 
-                target.style.left = moveEvent.clientX;
-                target.style.top = moveEvent.clientY;
-            });
+            target.style.left = `${moveEvent.clientX}px`;
+            target.style.top = `${moveEvent.clientY}px`;
+        });
 
-            addDocumentListener('mouseup', () => {
-                isMouseDown = false;
-            });
-        }
-    )
+        addDocumentListener('mouseup', () => {
+            isMouseDown = false;
+        });
+    }
+);
 
-    const item = document.getElementById('item');
-    item.style.position = 'fixed';
-    DragInteraction.apply(item);
+const item = document.getElementById('item');
+item.style.position = 'fixed';
+DragInteraction.apply(item);
 ```
 
 Svg Cursor Interaction
 ```js
-    function createCursorURI(cursorSvg: string) {
-        return `data:image/svg+xml;base64,${btoa(cursorSvg)}`;
-    }
+function createCursorURI(cursorSvg: string) {
+    return `data:image/svg+xml;base64,${btoa(cursorSvg)}`;
+}
 
-    export class SvgCursorInteraction extends TimelineInteraction {
-        constructor(cursorSvg: string) {
-            super(
-                ({ setTimelineStyle }) => {
-                    setTimelineStyle('cursor', `url(${createCursorURI(cursorSvg)}) 0 0,auto`);
-                }
-            );
-        }
+export class SvgCursorInteraction extends TimelineInteraction {
+    constructor(cursorSvg: string) {
+        super(
+            ({ setTimelineStyle }) => {
+                setTimelineStyle('cursor', `url(${createCursorURI(cursorSvg)}) 0 0,auto`);
+            }
+        );
     }
+}
 
-    const rectCursorSvg = `
-        <svg viewBox="0 0 24 24">
-            <rect width="24" height="24" style="fill:black;"></rect>
-        </svg>
-    `;
-    const rectCursor = new SvgCursorInteraction(cursorSvg);
+const rectCursorSvg = `
+    <svg viewBox="0 0 24 24">
+        <rect width="24" height="24" style="fill:black;"></rect>
+    </svg>
+`;
+const rectCursor = new SvgCursorInteraction(cursorSvg);
 ```
