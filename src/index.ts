@@ -1,5 +1,8 @@
-import { Interaction } from './interaction.js';
-import { Mode } from './mode.js';
+import { Interaction } from './interaction';
+import { Mode } from './mode';
+
+export { Interaction } from './interaction';
+export { Mode } from './mode';
 
 export default {
     Interaction,
