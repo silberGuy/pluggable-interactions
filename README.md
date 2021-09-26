@@ -127,7 +127,7 @@ function createCursorURI(cursorSvg: string) {
     return `data:image/svg+xml;base64,${btoa(cursorSvg)}`;
 }
 
-export class SvgCursorInteraction extends TimelineInteraction {
+export class SvgCursorInteraction extends Interaction {
     constructor(cursorSvg: string) {
         super(
             ({ setTimelineStyle }) => {

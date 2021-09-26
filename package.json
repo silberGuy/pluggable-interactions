@@ -1,6 +1,6 @@
 {
   "name": "pluggable-interactions",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "main": "src/index.ts",
   "repository": "https://github.com/silberGuy/pluggable-interactions",
   "author": "silberGuy",
